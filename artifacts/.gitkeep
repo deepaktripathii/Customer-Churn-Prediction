@@ -1,0 +1,2 @@
+# Placeholder so the artifacts directory exists after cloning.
+# Trained models, metrics and the monitoring database are gitignored.

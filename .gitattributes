@@ -1,0 +1,4 @@
+# Keep shell scripts LF even on Windows checkouts (Docker needs LF shebangs).
+*.sh text eol=lf
+*.yml text eol=lf
+Dockerfile text eol=lf
