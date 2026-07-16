@@ -1,0 +1,56 @@
+services:
+  api:
+    build: .
+    image: retainiq:latest
+    container_name: retainiq-api
+    ports:
+      - "8000:8000"
+    environment:
+      RETAINIQ_DATA_DIR: /app/data
+      RETAINIQ_ARTIFACT_DIR: /app/artifacts
+      RETAINIQ_DATABASE_URL: sqlite:////app/artifacts/monitoring.db
+      RETAINIQ_DEFAULT_MODEL: random_forest
+    volumes:
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+
+  dashboard:
+    image: retainiq:latest
+    container_name: retainiq-dashboard
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "8501:8501"
+    environment:
+      RETAINIQ_DATA_DIR: /app/data
+      RETAINIQ_ARTIFACT_DIR: /app/artifacts
+      RETAINIQ_API_URL: http://api:8000
+      STREAMLIT_SERVER_HEADLESS: "true"
+    volumes:
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+    command:
+      [
+        "streamlit",
+        "run",
+        "src/retainiq/dashboard/app.py",
+        "--server.port",
+        "8501",
+        "--server.address",
+        "0.0.0.0",
+      ]
+    restart: unless-stopped
