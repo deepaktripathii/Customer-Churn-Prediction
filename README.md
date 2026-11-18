@@ -213,24 +213,4 @@ Copy `.env.example` to `.env` and adjust as needed. Useful variables:
 | `RETAINIQ_DEFAULT_MODEL` | `random_forest` | Model served by the API |
 | `RETAINIQ_API_URL` | `http://localhost:8000` | Dashboard → API base URL |
 
-## Limitations and next steps
 
-- Trained on a public sample; re-validate on the operator's own customers.
-- Probabilities are not calibrated for tree ensembles; use the risk bands for
-  individual decisions.
-- Drift monitoring covers inputs. Performance drift needs churn outcomes joined
-  back to `prediction_logs` after the observation window.
-- Next: probability calibration, SHAP explanations, MLflow tracking, a fairness
-  audit across gender and senior-citizen segments.
-
-## Documentation
-
-- [Architecture and design decisions](docs/architecture.md)
-- [API reference](docs/api.md)
-- [Model card](docs/model_card.md)
-- [Interview notes](docs/interview-notes.md)
-
-## Licence
-
-MIT. See [LICENSE](LICENSE). The dataset is published by IBM for educational
-use; check the upstream terms before commercial use.
