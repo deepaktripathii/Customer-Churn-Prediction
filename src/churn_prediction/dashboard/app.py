@@ -1,8 +1,8 @@
-"""RetainIQ Streamlit dashboard.
+"""Customer Churn Prediction Streamlit dashboard.
 
 Run with::
 
-    streamlit run src/retainiq/dashboard/app.py
+    streamlit run src/churn_prediction/dashboard/app.py
 
 The dashboard reads training artifacts locally and talks to the FastAPI service
 when it is reachable, so it still works in a notebook-only environment.
@@ -24,15 +24,15 @@ import pandas as pd  # noqa: E402
 import requests  # noqa: E402
 import streamlit as st  # noqa: E402
 
-from retainiq.config import get_settings  # noqa: E402
-from retainiq.data.loader import DatasetNotFoundError, load_dataset, profile_dataset  # noqa: E402
-from retainiq.data.quality import run_quality_checks  # noqa: E402
-from retainiq.models.predictor import ChurnPredictor, ModelNotTrainedError  # noqa: E402
-from retainiq.monitoring.drift import compute_drift  # noqa: E402
-from retainiq.monitoring.store import MonitoringStore  # noqa: E402
+from churn_prediction.config import get_settings  # noqa: E402
+from churn_prediction.data.loader import DatasetNotFoundError, load_dataset, profile_dataset  # noqa: E402
+from churn_prediction.data.quality import run_quality_checks  # noqa: E402
+from churn_prediction.models.predictor import ChurnPredictor, ModelNotTrainedError  # noqa: E402
+from churn_prediction.monitoring.drift import compute_drift  # noqa: E402
+from churn_prediction.monitoring.store import MonitoringStore  # noqa: E402
 
 st.set_page_config(
-    page_title="RetainIQ | Churn Intelligence",
+    page_title="Customer Churn Prediction | Churn Intelligence",
     page_icon="📉",
     layout="wide",
 )
@@ -103,7 +103,7 @@ def api_post(api_url: str, path: str, payload: dict) -> dict | None:
 # Sidebar
 # --------------------------------------------------------------------------- #
 with st.sidebar:
-    st.title("📉 RetainIQ")
+    st.title("📉 Customer Churn Prediction")
     st.caption("Customer retention intelligence platform")
     page = st.radio(
         "Navigate",
@@ -113,7 +113,7 @@ with st.sidebar:
     st.divider()
     api_url = st.text_input(
         "API base URL",
-        value=os.getenv("RETAINIQ_API_URL", "http://localhost:8000"),
+        value=os.getenv("CHURN_API_URL", "http://localhost:8000"),
         help="Used for live prediction and monitoring; local artifacts are used as fallback.",
     )
     api_health = api_get(api_url, "/health")
@@ -134,7 +134,7 @@ metrics = load_metrics()
 def render_overview() -> None:
     st.header("Project overview")
     st.write(
-        "RetainIQ predicts which telecom customers are about to churn, explains the "
+        "Customer Churn Prediction predicts which telecom customers are about to churn, explains the "
         "drivers behind each score, and monitors the model in production."
     )
 

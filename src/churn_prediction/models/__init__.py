@@ -1,6 +1,6 @@
 """Model package: registry, training, evaluation and inference."""
 
-from retainiq.models.evaluate import (
+from churn_prediction.models.evaluate import (
     classification_metrics,
     comparison_table,
     evaluate_pipeline,
@@ -8,19 +8,19 @@ from retainiq.models.evaluate import (
     pr_curve_points,
     roc_curve_points,
 )
-from retainiq.models.predictor import (
+from churn_prediction.models.predictor import (
     ChurnPredictor,
     ModelNotTrainedError,
     Prediction,
 )
-from retainiq.models.registry import (
+from churn_prediction.models.registry import (
     MODEL_REGISTRY,
     ModelSpec,
     available_models,
     describe_models,
     get_model_spec,
 )
-from retainiq.models.train import (
+from churn_prediction.models.train import (
     ModelRun,
     TrainingError,
     build_reference_stats,

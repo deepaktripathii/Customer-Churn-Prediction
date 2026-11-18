@@ -14,7 +14,7 @@ from typing import Any
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 
-from retainiq.config import get_settings
+from churn_prediction.config import get_settings
 
 
 @dataclass(frozen=True)

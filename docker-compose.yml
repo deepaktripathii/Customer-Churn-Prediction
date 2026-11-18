@@ -1,15 +1,15 @@
 services:
   api:
     build: .
-    image: retainiq:latest
-    container_name: retainiq-api
+    image: churn_prediction:latest
+    container_name: churn_prediction-api
     ports:
       - "8000:8000"
     environment:
-      RETAINIQ_DATA_DIR: /app/data
-      RETAINIQ_ARTIFACT_DIR: /app/artifacts
-      RETAINIQ_DATABASE_URL: sqlite:////app/artifacts/monitoring.db
-      RETAINIQ_DEFAULT_MODEL: random_forest
+      CHURN_DATA_DIR: /app/data
+      CHURN_ARTIFACT_DIR: /app/artifacts
+      CHURN_DATABASE_URL: sqlite:////app/artifacts/monitoring.db
+      CHURN_DEFAULT_MODEL: random_forest
     volumes:
       - ./data:/app/data
       - ./artifacts:/app/artifacts
@@ -28,17 +28,17 @@ services:
     restart: unless-stopped
 
   dashboard:
-    image: retainiq:latest
-    container_name: retainiq-dashboard
+    image: churn_prediction:latest
+    container_name: churn_prediction-dashboard
     depends_on:
       api:
         condition: service_healthy
     ports:
       - "8501:8501"
     environment:
-      RETAINIQ_DATA_DIR: /app/data
-      RETAINIQ_ARTIFACT_DIR: /app/artifacts
-      RETAINIQ_API_URL: http://api:8000
+      CHURN_DATA_DIR: /app/data
+      CHURN_ARTIFACT_DIR: /app/artifacts
+      CHURN_API_URL: http://api:8000
       STREAMLIT_SERVER_HEADLESS: "true"
     volumes:
       - ./data:/app/data
@@ -47,7 +47,7 @@ services:
       [
         "streamlit",
         "run",
-        "src/retainiq/dashboard/app.py",
+        "src/churn_prediction/dashboard/app.py",
         "--server.port",
         "8501",
         "--server.address",

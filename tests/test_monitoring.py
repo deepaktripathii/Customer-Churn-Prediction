@@ -5,15 +5,15 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from retainiq.api.schemas import CustomerFeatures
-from retainiq.features.engineering import add_derived_features
-from retainiq.models.train import build_reference_stats
-from retainiq.monitoring.drift import (
+from churn_prediction.api.schemas import CustomerFeatures
+from churn_prediction.features.engineering import add_derived_features
+from churn_prediction.models.train import build_reference_stats
+from churn_prediction.monitoring.drift import (
     compute_drift,
     drift_status,
     population_stability_index,
 )
-from retainiq.monitoring.store import MonitoringStore
+from churn_prediction.monitoring.store import MonitoringStore
 
 
 def _store(tmp_path) -> MonitoringStore:

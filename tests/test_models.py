@@ -7,14 +7,14 @@ import json
 import numpy as np
 import pytest
 
-from retainiq.models.evaluate import (
+from churn_prediction.models.evaluate import (
     classification_metrics,
     comparison_table,
     evaluate_scores,
 )
-from retainiq.models.predictor import ChurnPredictor, ModelNotTrainedError
-from retainiq.models.registry import available_models
-from retainiq.models.train import (
+from churn_prediction.models.predictor import ChurnPredictor, ModelNotTrainedError
+from churn_prediction.models.registry import available_models
+from churn_prediction.models.train import (
     infer_defaults,
     optimal_threshold,
     train_models,

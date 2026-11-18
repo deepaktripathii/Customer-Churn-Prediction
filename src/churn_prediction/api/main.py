@@ -2,7 +2,7 @@
 
 Run locally::
 
-    uvicorn retainiq.api.main:app --reload
+    uvicorn churn_prediction.api.main:app --reload
 
 The app degrades gracefully: if no model artifact exists yet, ``/health``
 reports ``model_loaded: false`` and ``/predict`` returns HTTP 503 with an
@@ -21,8 +21,8 @@ from typing import Any
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from retainiq import __version__
-from retainiq.api.schemas import (
+from churn_prediction import __version__
+from churn_prediction.api.schemas import (
     SAMPLE_CUSTOMER,
     CustomerFeatures,
     DriftResponse,
@@ -32,17 +32,17 @@ from retainiq.api.schemas import (
     PredictionLogEntry,
     PredictionResponse,
 )
-from retainiq.config import Settings, get_settings
-from retainiq.logging_config import get_logger
-from retainiq.models.predictor import ChurnPredictor, ModelNotTrainedError
-from retainiq.models.registry import describe_models
-from retainiq.monitoring.drift import compute_drift
-from retainiq.monitoring.store import MonitoringStore
+from churn_prediction.config import Settings, get_settings
+from churn_prediction.logging_config import get_logger
+from churn_prediction.models.predictor import ChurnPredictor, ModelNotTrainedError
+from churn_prediction.models.registry import describe_models
+from churn_prediction.monitoring.drift import compute_drift
+from churn_prediction.monitoring.store import MonitoringStore
 
 logger = get_logger(__name__)
 
 DESCRIPTION = """
-RetainIQ turns a churn model into a production service.
+Customer Churn Prediction turns a churn model into a production service.
 
 * `POST /predict` - score a customer and explain which fields drive the risk
 * `GET /model-info` - served model, threshold, metrics and the model registry
@@ -128,7 +128,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     @app.get("/", tags=["meta"])
     def root() -> dict[str, str]:
         return {
-            "name": "RetainIQ API",
+            "name": "Customer Churn Prediction API",
             "version": __version__,
             "docs": "/docs",
             "health": "/health",

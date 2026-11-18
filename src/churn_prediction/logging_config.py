@@ -21,7 +21,7 @@ def configure_logging(level: str | int | None = None) -> None:
     if _CONFIGURED:
         return
 
-    resolved = level or os.getenv("RETAINIQ_LOG_LEVEL", "INFO")
+    resolved = level or os.getenv("CHURN_LOG_LEVEL", "INFO")
     if isinstance(resolved, str):
         resolved = logging.getLevelName(resolved.upper())
     logging.basicConfig(

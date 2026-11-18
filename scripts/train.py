@@ -15,16 +15,16 @@ import sys
 import pandas as pd
 
 import _bootstrap  # noqa: F401  (adds src/ to sys.path)
-from retainiq.config import get_settings
-from retainiq.data.loader import DatasetNotFoundError, load_dataset, profile_dataset
-from retainiq.data.quality import run_quality_checks
-from retainiq.features.cleaning import clean_churn_data
-from retainiq.models.registry import available_models
-from retainiq.models.train import train_and_save
+from churn_prediction.config import get_settings
+from churn_prediction.data.loader import DatasetNotFoundError, load_dataset, profile_dataset
+from churn_prediction.data.quality import run_quality_checks
+from churn_prediction.features.cleaning import clean_churn_data
+from churn_prediction.models.registry import available_models
+from churn_prediction.models.train import train_and_save
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Train the RetainIQ churn models.")
+    parser = argparse.ArgumentParser(description="Train the Customer Churn Prediction churn models.")
     parser.add_argument("--data", default=None, help="Raw CSV path (default: data/raw/telco_churn.csv).")
     parser.add_argument(
         "--models",

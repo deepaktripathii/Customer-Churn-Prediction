@@ -7,7 +7,7 @@ from dataclasses import replace
 import pytest
 from fastapi.testclient import TestClient
 
-from retainiq.api.main import create_app
+from churn_prediction.api.main import create_app
 
 
 @pytest.fixture()
@@ -115,7 +115,7 @@ def test_sample_endpoint(client):
 
 
 def test_health_reports_missing_model(tmp_path):
-    from retainiq.config import get_settings
+    from churn_prediction.config import get_settings
 
     empty_settings = replace(
         get_settings().with_artifact_dir(tmp_path / "empty"),

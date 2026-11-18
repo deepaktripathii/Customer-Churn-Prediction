@@ -1,7 +1,7 @@
 """Cleaning, feature engineering and pipeline construction."""
 
-from retainiq.features.cleaning import CleaningReport, clean_churn_data
-from retainiq.features.engineering import (
+from churn_prediction.features.cleaning import CleaningReport, clean_churn_data
+from churn_prediction.features.engineering import (
     CONTRACT_MONTHS,
     DERIVED_COLUMNS,
     SERVICE_COLUMNS,
@@ -9,7 +9,7 @@ from retainiq.features.engineering import (
     add_derived_features,
     feature_frame,
 )
-from retainiq.features.pipeline import (
+from churn_prediction.features.pipeline import (
     build_pipeline,
     build_preprocessor,
     feature_names,

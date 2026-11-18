@@ -11,7 +11,7 @@ from dataclasses import dataclass, field
 
 import pandas as pd
 
-from retainiq.config import ID_COLUMN, TARGET_COLUMN
+from churn_prediction.config import ID_COLUMN, TARGET_COLUMN
 
 
 @dataclass

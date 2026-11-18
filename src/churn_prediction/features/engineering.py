@@ -14,8 +14,8 @@ from collections.abc import Iterable
 import numpy as np
 import pandas as pd
 
-from retainiq.config import ID_COLUMN, TARGET_COLUMN
-from retainiq.logging_config import get_logger
+from churn_prediction.config import ID_COLUMN, TARGET_COLUMN
+from churn_prediction.logging_config import get_logger
 
 logger = get_logger(__name__)
 

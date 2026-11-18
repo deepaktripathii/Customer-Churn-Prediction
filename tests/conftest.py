@@ -20,9 +20,9 @@ SRC_DIR = Path(__file__).resolve().parents[1] / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from retainiq.config import get_settings  # noqa: E402
-from retainiq.features.cleaning import clean_churn_data  # noqa: E402
-from retainiq.models.train import train_and_save  # noqa: E402
+from churn_prediction.config import get_settings  # noqa: E402
+from churn_prediction.features.cleaning import clean_churn_data  # noqa: E402
+from churn_prediction.models.train import train_and_save  # noqa: E402
 
 YES_NO = ["Yes", "No"]
 ADDON = ["Yes", "No", "No internet service"]
@@ -94,7 +94,7 @@ def cleaned_frame(raw_frame: pd.DataFrame) -> pd.DataFrame:
 @pytest.fixture(scope="session")
 def trained_settings(tmp_path_factory: pytest.TempPathFactory):
     """Small trained artifact directory shared by the model and API tests."""
-    artifacts = tmp_path_factory.mktemp("retainiq-artifacts")
+    artifacts = tmp_path_factory.mktemp("churn_prediction-artifacts")
     base = get_settings().with_artifact_dir(artifacts)
     settings = replace(base, test_size=0.25, cv_folds=2, default_model="logistic_regression")
 

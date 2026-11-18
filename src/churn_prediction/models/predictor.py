@@ -16,10 +16,10 @@ from typing import Any
 import joblib
 import pandas as pd
 
-from retainiq.config import Settings, get_settings, risk_level
-from retainiq.features.engineering import add_derived_features
-from retainiq.features.fields import to_model_columns
-from retainiq.logging_config import get_logger
+from churn_prediction.config import Settings, get_settings, risk_level
+from churn_prediction.features.engineering import add_derived_features
+from churn_prediction.features.fields import to_model_columns
+from churn_prediction.logging_config import get_logger
 
 logger = get_logger(__name__)
 

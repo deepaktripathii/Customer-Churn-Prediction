@@ -16,11 +16,11 @@ import numpy as np
 import pandas as pd
 
 import _bootstrap  # noqa: F401  (adds src/ to sys.path)
-from retainiq.config import TARGET_COLUMN, get_settings
-from retainiq.data.loader import load_dataset
-from retainiq.features.cleaning import clean_churn_data
-from retainiq.models.predictor import ChurnPredictor
-from retainiq.monitoring.store import MonitoringStore
+from churn_prediction.config import TARGET_COLUMN, get_settings
+from churn_prediction.data.loader import load_dataset
+from churn_prediction.features.cleaning import clean_churn_data
+from churn_prediction.models.predictor import ChurnPredictor
+from churn_prediction.monitoring.store import MonitoringStore
 
 
 def sample_customers(
@@ -59,7 +59,7 @@ def _plain(value: object) -> object:
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Send demo prediction traffic to RetainIQ.")
+    parser = argparse.ArgumentParser(description="Send demo prediction traffic to Customer Churn Prediction.")
     parser.add_argument("--n", type=int, default=200, help="Number of predictions to generate.")
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument(
@@ -123,7 +123,7 @@ def main(argv: list[str] | None = None) -> int:
 
 def _api_payload(payload: dict) -> dict:
     """Translate dataset column names into the public API schema."""
-    from retainiq.api.schemas import MODEL_FIELD_MAP
+    from churn_prediction.api.schemas import MODEL_FIELD_MAP
 
     reverse = {target: source for source, target in MODEL_FIELD_MAP.items()}
     return {

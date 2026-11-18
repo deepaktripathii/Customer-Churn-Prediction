@@ -1,5 +1,5 @@
 """FastAPI service package."""
 
-from retainiq.api.main import create_app
+from churn_prediction.api.main import create_app
 
 __all__ = ["create_app"]

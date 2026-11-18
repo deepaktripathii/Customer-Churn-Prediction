@@ -14,7 +14,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from retainiq.features.engineering import add_derived_features
+from churn_prediction.features.engineering import add_derived_features
 
 #: Conventional PSI interpretation thresholds.
 PSI_STABLE = 0.10

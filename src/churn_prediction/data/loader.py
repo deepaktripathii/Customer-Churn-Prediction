@@ -16,8 +16,8 @@ from typing import Any
 
 import pandas as pd
 
-from retainiq.config import ID_COLUMN, TARGET_COLUMN, get_settings
-from retainiq.logging_config import get_logger
+from churn_prediction.config import ID_COLUMN, TARGET_COLUMN, get_settings
+from churn_prediction.logging_config import get_logger
 
 logger = get_logger(__name__)
 

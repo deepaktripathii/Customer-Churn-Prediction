@@ -1,4 +1,4 @@
-"""Pydantic schemas for the RetainIQ API.
+"""Pydantic schemas for the Customer Churn Prediction API.
 
 The public API uses ``snake_case`` names that are friendly to front-end code,
 while the trained pipeline expects the original dataset column names. The
@@ -12,7 +12,7 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-from retainiq.features.fields import MODEL_FIELD_MAP
+from churn_prediction.features.fields import MODEL_FIELD_MAP
 
 YesNo = Literal["Yes", "No"]
 

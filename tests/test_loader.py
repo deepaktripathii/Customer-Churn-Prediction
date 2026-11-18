@@ -5,7 +5,7 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from retainiq.data.loader import (
+from churn_prediction.data.loader import (
     DatasetNotFoundError,
     format_profile,
     load_dataset,

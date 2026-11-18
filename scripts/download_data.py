@@ -15,9 +15,9 @@ from pathlib import Path
 import requests
 
 import _bootstrap  # noqa: F401  (adds src/ to sys.path)
-from retainiq.config import TELCO_DATASET_MIRRORS, TELCO_DATASET_URL, get_settings
-from retainiq.data.loader import format_profile, load_dataset, profile_dataset
-from retainiq.logging_config import get_logger
+from churn_prediction.config import TELCO_DATASET_MIRRORS, TELCO_DATASET_URL, get_settings
+from churn_prediction.data.loader import format_profile, load_dataset, profile_dataset
+from churn_prediction.logging_config import get_logger
 
 logger = get_logger(__name__)
 

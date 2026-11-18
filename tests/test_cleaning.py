@@ -5,8 +5,8 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from retainiq.features.cleaning import clean_churn_data
-from retainiq.features.pipeline import build_pipeline, split_feature_types
+from churn_prediction.features.cleaning import clean_churn_data
+from churn_prediction.features.pipeline import build_pipeline, split_feature_types
 
 
 def test_cleaning_removes_duplicates_and_identifier(raw_frame):

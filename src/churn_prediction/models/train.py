@@ -24,17 +24,17 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import StratifiedKFold, cross_val_score
 
-from retainiq.config import TARGET_COLUMN, Settings, get_settings
-from retainiq.features.engineering import add_derived_features
-from retainiq.features.pipeline import (
+from churn_prediction.config import TARGET_COLUMN, Settings, get_settings
+from churn_prediction.features.engineering import add_derived_features
+from churn_prediction.features.pipeline import (
     build_pipeline,
     feature_names,
     split_feature_types,
     stratified_split,
 )
-from retainiq.logging_config import get_logger
-from retainiq.models.evaluate import comparison_table, evaluate_pipeline, evaluate_scores
-from retainiq.models.registry import available_models, get_model_spec
+from churn_prediction.logging_config import get_logger
+from churn_prediction.models.evaluate import comparison_table, evaluate_pipeline, evaluate_scores
+from churn_prediction.models.registry import available_models, get_model_spec
 
 logger = get_logger(__name__)
 

@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from retainiq.features.engineering import (
+from churn_prediction.features.engineering import (
     DERIVED_COLUMNS,
     add_derived_features,
     feature_frame,

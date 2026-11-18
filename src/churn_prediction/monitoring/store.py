@@ -2,7 +2,7 @@
 
 Every prediction is persisted with its payload, probability, risk band and
 latency. SQLite is the default so the project runs with zero infrastructure;
-swapping ``RETAINIQ_DATABASE_URL`` for a PostgreSQL DSN is enough for a shared
+swapping ``CHURN_DATABASE_URL`` for a PostgreSQL DSN is enough for a shared
 deployment (SQLAlchemy handles the dialect).
 """
 
@@ -19,8 +19,8 @@ from sqlalchemy import DateTime, Float, Integer, String, create_engine, func, se
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 from sqlalchemy.types import JSON
 
-from retainiq.config import Settings, get_settings
-from retainiq.logging_config import get_logger
+from churn_prediction.config import Settings, get_settings
+from churn_prediction.logging_config import get_logger
 
 logger = get_logger(__name__)
 

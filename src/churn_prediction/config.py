@@ -1,4 +1,4 @@
-"""Central configuration for the RetainIQ platform.
+"""Central configuration for the Customer Churn Prediction platform.
 
 Everything that touches the filesystem, the database or the model registry is
 resolved here so that scripts, the API, the dashboard and the test-suite all
@@ -44,7 +44,7 @@ def _env_path(name: str, default: Path) -> Path:
 
 def _project_root() -> Path:
     """Repository root, i.e. the folder that contains ``src/``."""
-    env_root = os.getenv("RETAINIQ_PROJECT_ROOT")
+    env_root = os.getenv("CHURN_PROJECT_ROOT")
     if env_root:
         return Path(env_root).expanduser().resolve()
     return Path(__file__).resolve().parents[2]
@@ -70,7 +70,7 @@ class Settings:
     cv_folds: int = 5
     low_risk_max: float = 0.35
     high_risk_min: float = 0.65
-    api_title: str = "RetainIQ - Customer Retention Intelligence API"
+    api_title: str = "Customer Churn Prediction - Customer Retention Intelligence API"
     api_version: str = "1.0.0"
 
     # -- helpers ---------------------------------------------------------- #
@@ -102,23 +102,23 @@ class Settings:
 @lru_cache(maxsize=1)
 def get_settings() -> Settings:
     root = _project_root()
-    data_dir = _env_path("RETAINIQ_DATA_DIR", root / "data")
-    artifact_dir = _env_path("RETAINIQ_ARTIFACT_DIR", root / "artifacts")
+    data_dir = _env_path("CHURN_DATA_DIR", root / "data")
+    artifact_dir = _env_path("CHURN_ARTIFACT_DIR", root / "artifacts")
     default_db = f"sqlite:///{(artifact_dir / 'monitoring.db').as_posix()}"
 
     return Settings(
         project_root=root,
         data_dir=data_dir,
-        raw_data_path=_env_path("RETAINIQ_RAW_DATA_PATH", data_dir / "raw" / "telco_churn.csv"),
+        raw_data_path=_env_path("CHURN_RAW_DATA_PATH", data_dir / "raw" / "telco_churn.csv"),
         artifact_dir=artifact_dir,
-        model_dir=_env_path("RETAINIQ_MODEL_DIR", artifact_dir / "models"),
-        metrics_path=_env_path("RETAINIQ_METRICS_PATH", artifact_dir / "metrics.json"),
-        model_card_path=_env_path("RETAINIQ_MODEL_CARD_PATH", artifact_dir / "model_card.json"),
+        model_dir=_env_path("CHURN_MODEL_DIR", artifact_dir / "models"),
+        metrics_path=_env_path("CHURN_METRICS_PATH", artifact_dir / "metrics.json"),
+        model_card_path=_env_path("CHURN_MODEL_CARD_PATH", artifact_dir / "model_card.json"),
         reference_stats_path=_env_path(
-            "RETAINIQ_REFERENCE_STATS_PATH", artifact_dir / "reference_stats.json"
+            "CHURN_REFERENCE_STATS_PATH", artifact_dir / "reference_stats.json"
         ),
-        database_url=os.getenv("RETAINIQ_DATABASE_URL", default_db),
-        default_model=os.getenv("RETAINIQ_DEFAULT_MODEL", "random_forest"),
+        database_url=os.getenv("CHURN_DATABASE_URL", default_db),
+        default_model=os.getenv("CHURN_DEFAULT_MODEL", "random_forest"),
     )
 
 

@@ -12,16 +12,16 @@ download:
 	python scripts/download_data.py
 
 eda:
-	python -m retainiq.data.loader
+	python -m churn_prediction.data.loader
 
 train:
 	python scripts/train.py
 
 api:
-	uvicorn retainiq.api.main:app --reload --port 8000
+	uvicorn churn_prediction.api.main:app --reload --port 8000
 
 dashboard:
-	streamlit run src/retainiq/dashboard/app.py
+	streamlit run src/churn_prediction/dashboard/app.py
 
 simulate:
 	python scripts/simulate_traffic.py --n 300
@@ -36,7 +36,7 @@ format:
 	ruff format src tests scripts
 
 docker-build:
-	docker build -t retainiq:latest .
+	docker build -t churn_prediction:latest .
 
 docker-up:
 	docker compose up --build

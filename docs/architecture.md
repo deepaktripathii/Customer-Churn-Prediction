@@ -20,21 +20,21 @@ flowchart LR
 
 | Path | Responsibility |
 | --- | --- |
-| `src/retainiq/config.py` | Paths, risk bands, `Settings` loaded from env |
-| `src/retainiq/data/loader.py` | Feature 1: load CSV, profile rows/columns/missing/duplicates |
-| `src/retainiq/data/quality.py` | Validation checks with severity levels |
-| `src/retainiq/features/cleaning.py` | Feature 2: dtype fixes, de-duplication, imputation, target encoding |
-| `src/retainiq/features/engineering.py` | Feature 3: tenure buckets, spend ratios, service counts, flags |
-| `src/retainiq/features/pipeline.py` | Scikit-learn `ColumnTransformer` + `Pipeline` builders |
-| `src/retainiq/features/fields.py` | API name <-> dataset column mapping |
-| `src/retainiq/models/registry.py` | Feature 4: Logistic Regression, Random Forest, optional XGBoost |
-| `src/retainiq/models/train.py` | Split, threshold tuning, CV, artifact persistence |
-| `src/retainiq/models/evaluate.py` | Feature 5: metrics, confusion matrix, ROC/PR curves, comparison table |
-| `src/retainiq/models/predictor.py` | Feature 6: probability, risk band, per-field explanations |
-| `src/retainiq/monitoring/store.py` | Feature 7: SQLAlchemy prediction log and aggregates |
-| `src/retainiq/monitoring/drift.py` | Feature 7: PSI per feature against training reference |
-| `src/retainiq/api/main.py` | Feature 7: FastAPI routes with graceful degradation |
-| `src/retainiq/dashboard/app.py` | Streamlit UI: overview, metrics, scoring, monitoring |
+| `src/churn_prediction/config.py` | Paths, risk bands, `Settings` loaded from env |
+| `src/churn_prediction/data/loader.py` | Feature 1: load CSV, profile rows/columns/missing/duplicates |
+| `src/churn_prediction/data/quality.py` | Validation checks with severity levels |
+| `src/churn_prediction/features/cleaning.py` | Feature 2: dtype fixes, de-duplication, imputation, target encoding |
+| `src/churn_prediction/features/engineering.py` | Feature 3: tenure buckets, spend ratios, service counts, flags |
+| `src/churn_prediction/features/pipeline.py` | Scikit-learn `ColumnTransformer` + `Pipeline` builders |
+| `src/churn_prediction/features/fields.py` | API name <-> dataset column mapping |
+| `src/churn_prediction/models/registry.py` | Feature 4: Logistic Regression, Random Forest, optional XGBoost |
+| `src/churn_prediction/models/train.py` | Split, threshold tuning, CV, artifact persistence |
+| `src/churn_prediction/models/evaluate.py` | Feature 5: metrics, confusion matrix, ROC/PR curves, comparison table |
+| `src/churn_prediction/models/predictor.py` | Feature 6: probability, risk band, per-field explanations |
+| `src/churn_prediction/monitoring/store.py` | Feature 7: SQLAlchemy prediction log and aggregates |
+| `src/churn_prediction/monitoring/drift.py` | Feature 7: PSI per feature against training reference |
+| `src/churn_prediction/api/main.py` | Feature 7: FastAPI routes with graceful degradation |
+| `src/churn_prediction/dashboard/app.py` | Streamlit UI: overview, metrics, scoring, monitoring |
 | `scripts/` | Download, train, generate demo traffic |
 | `tests/` | 60+ unit and API tests on synthetic data |
 

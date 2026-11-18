@@ -7,7 +7,7 @@ The raw Telco CSV is *almost* model ready, but not quite:
 * ``SeniorCitizen`` is 0/1 while every other yes/no column is "Yes"/"No".
 * Duplicate records inflate the training set.
 * Categorical columns must be encoded and numeric columns scaled, which is
-  handled by the scikit-learn pipeline in :mod:`retainiq.features.pipeline`.
+  handled by the scikit-learn pipeline in :mod:`churn_prediction.features.pipeline`.
 
 Cleaning is deliberately separate from feature engineering: here we only fix
 what is broken, we do not invent new information.
@@ -19,8 +19,8 @@ from dataclasses import asdict, dataclass, field
 
 import pandas as pd
 
-from retainiq.config import ID_COLUMN, TARGET_COLUMN
-from retainiq.logging_config import get_logger
+from churn_prediction.config import ID_COLUMN, TARGET_COLUMN
+from churn_prediction.logging_config import get_logger
 
 logger = get_logger(__name__)
 
